@@ -1,4 +1,3 @@
-// Contact.jsx - React contact form page
 import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -30,7 +29,8 @@ const Contact = () => {
     const toastId = toast.loading('Sending message...');
 
     try {
-      await axios.post('/api/contact', formData);
+      // ✅ UPDATED API CALL
+      await axios.post('https://itemhub-2.onrender.com/api/contact', formData);
       toast.success('Message sent successfully!', { id: toastId });
 
       setFormData({ name: '', email: '', message: '' });

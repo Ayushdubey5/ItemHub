@@ -35,7 +35,7 @@ const AddItems = () => {
   const uploadToCloudinary = async (file) => {
     const data = new FormData();
     data.append('file', file);
-    data.append('upload_preset', 'unsigned_preset'); // ✅ Your actual unsigned preset
+    data.append('upload_preset', 'unsigned_preset');
 
     try {
       const res = await axios.post(
@@ -61,18 +61,16 @@ const AddItems = () => {
     const toastId = toast.loading('Adding item...');
 
     try {
-      // Upload cover image
       const coverImageUrl = await uploadToCloudinary(coverImage);
 
-      // Upload additional images
       const additionalImageUrls = [];
       for (const image of additionalImages) {
         const url = await uploadToCloudinary(image);
         additionalImageUrls.push(url);
       }
 
-      // Send item data to backend
-      await axios.post('/api/items', {
+      // ✅ Updated API endpoint
+      await axios.post('https://itemhub-2.onrender.com/api/items', {
         ...formData,
         coverImage: coverImageUrl,
         additionalImages: additionalImageUrls,
@@ -80,12 +78,9 @@ const AddItems = () => {
 
       toast.success('Item successfully added!', { id: toastId });
 
-      // Reset form
       setFormData({ name: '', type: '', description: '' });
       setCoverImage(null);
       setAdditionalImages([]);
-
-      // Reset file inputs
       document.getElementById('coverImage').value = '';
       document.getElementById('additionalImages').value = '';
 
