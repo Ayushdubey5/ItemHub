@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "node server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "vite",
     "server": "cd server && npm run dev",
@@ -17,6 +18,7 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongoose": "^8.16.0",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^7.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
